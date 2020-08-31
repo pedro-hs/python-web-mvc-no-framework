@@ -29,7 +29,8 @@ class Router:
         :raises: NotFound or InternalServerError
         """
         try:
-            controller = self.routes[http_method, url]
+            url = f"/{url.split('/')[-1]}"
+            controller = self.routes[(http_method, url)]
 
         except KeyError:
             raise NotFound
