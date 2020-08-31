@@ -1,14 +1,8 @@
 """ router.py test """
-import inspect
-import os
-import sys
 import unittest
+from test.utils import fix_path  # TODO: Improve path
 
-# TODO: Improve path
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))  # noqa isort:skip
-parentdir = os.path.dirname(currentdir)  # noqa isort:skip
-sys.path.insert(0, parentdir)   # noqa isort:skip
-
+fix_path()
 
 from router import Router  # noqa isort:skip
 from errors import NotFound, InternalServerError  # noqa isort:skip
