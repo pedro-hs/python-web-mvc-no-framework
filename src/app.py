@@ -3,12 +3,19 @@ from errors import NotFound
 
 
 class App(object):
-    """ WSGI app """
+    """ WSGI app
+    :param router Router: App router
+    """
 
     def __init__(self, router):
         self.router = router
 
     def __call__(self, environ, start_response):
+        """ Callback to execute app business logic
+        :param environ dict: wsgi environ
+        :param start_response function: wsgi start_response
+        :returns: yield response body or errors
+        """
         try:
             controller = self.router.get_controller(environ.get('PATH_INFO'), environ.get('REQUEST_METHOD'))
             response = controller()

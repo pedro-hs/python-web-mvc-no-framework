@@ -1,18 +1,19 @@
+""" App server """
 from wsgiref.simple_server import make_server
 
 from app import App
 from customers import router as customers_router
 from router import Router
 
-router = Router()
-router.merge([customers_router])
-
 HOST = 'localhost'
 PORT = 8100
 
 
 def main():
-    """ Execute server """
+    """ Prepare and execute server """
+    router = Router()
+    router.merge([customers_router])
+
     app = App(router)
 
     with make_server(HOST, PORT, app) as server:
