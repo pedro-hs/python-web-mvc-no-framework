@@ -29,7 +29,7 @@ class Router:
         :raises: NotFound or InternalServerError
         """
         try:
-            url = f"/{url.split('/')[-1]}"
+            url = f"/{url.split('/')[-1]}"  # TODO: Fix to accept url with multiple paths + test
             controller = self.routes[(http_method, url)]
 
         except KeyError:

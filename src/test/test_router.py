@@ -1,6 +1,6 @@
 """ router.py test """
 import unittest
-from test.utils import fix_path  # TODO: Improve path
+from test.utils import fix_path
 
 fix_path()
 

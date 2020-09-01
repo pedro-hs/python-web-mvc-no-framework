@@ -54,7 +54,7 @@ class App(object):
         """
         response = controller()
         status = self.__handle_status(response)
-        header = [('Content-type', 'text/html')]
+        header = [('Content-type', 'text/html')]  # TODO: Handle header
         body = response.get('body')
 
         return body, status, header
