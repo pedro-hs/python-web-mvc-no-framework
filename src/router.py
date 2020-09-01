@@ -4,27 +4,27 @@ from errors import InternalServerError, NotFound
 
 class Router:
     """ Handle app routes
-    :param routes dict: All app routes
+    :param routes dict: All app routes. Example={('GET', '/score'): handle_score}
     """
 
     def __init__(self):
         self.routes = {}
 
     def __call__(self, url, http_method):
-        """ I'm a decorator. Add new route to self.routes
-        :param url str: Url of route
-        :param http_method str: Http method of route
+        """ Decorator. Add new route to self.routes
+        :param url str: Url of route. Example='https://rubikstimer.com/score'
+        :param http_method str: Http method of route. Example='GET'
         """
-        def wrapper(function):
-            route = {(http_method, url): function}
+        def wrapper(callback):
+            route = {(http_method, url): callback}
             self.routes.update(route)
 
         return wrapper
 
     def get_controller(self, url, http_method):
         """ Get controller by route(url + http_method)
-        :param url str: Route url
-        :param http_method str: Route http method
+        :param url str: Route url. Example='https://rubikstimer.com/score'
+        :param http_method str: Route http method. Example='GET'
         :returns: request controller
         :raises: NotFound or InternalServerError
         """
