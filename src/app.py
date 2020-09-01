@@ -18,7 +18,7 @@ def handle_errors(callback):
             start_response('404 NOT FOUND', [('Content-type', 'text/html')])
             return ['Not Found'.encode()]
 
-        except Exception as error:
+        except Exception:
             start_response('500 INTERNAL SERVER ERROR', [('Content-type', 'text/html')])
             return ['Internal Server Error'.encode()]
 
@@ -66,8 +66,6 @@ class App(object):
         """
         status = int(response.get('status', '200'))
         status_message = http.client.responses.get(status, 'INTERNAL SERVER ERROR')
-
-        if status_message == 'INTERNAL SERVER ERROR':
-            status = 500
+        status = 500 if status_message == 'INTERNAL SERVER ERROR' else status
 
         return f'{status} {status_message}'
