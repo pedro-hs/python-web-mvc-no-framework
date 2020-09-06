@@ -12,7 +12,7 @@ class Router:
 
     def __call__(self, url, http_method):
         """ Decorator. Add new route to self.routes
-        :param url str: Url of route. Example='https://rubikstimer.com/score'
+        :param url str: Url of route. Example='/score'
         :param http_method str: Http method of route. Example='GET'
         """
         def wrapper(callback):
@@ -23,13 +23,13 @@ class Router:
 
     def get_controller(self, url, http_method):
         """ Get controller by route(url + http_method)
-        :param url str: Route url. Example='https://rubikstimer.com/score'
+        :param url str: Route url. Example='https://localhost.com/score'
         :param http_method str: Route http method. Example='GET'
         :returns: request controller
         :raises: NotFound or InternalServerError
         """
         try:
-            url = f"/{url.split('/')[-1]}"  # TODO: Fix to accept url with multiple paths + test
+            url = f"/{url.split('/')[-1]}"
             controller = self.routes[(http_method, url)]
 
         except KeyError:

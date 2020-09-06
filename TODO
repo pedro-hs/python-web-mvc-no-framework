@@ -1,5 +1,6 @@
 add cors
 create template render
 create auth
-move router, server and app to infraestructure/
 handle header (compare django-sample, protocolos, api and this app headers)
+add multi path support. example: /customers/1/orders + test
+add query param support + test
