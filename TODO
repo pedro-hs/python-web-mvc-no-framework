@@ -1,5 +1,5 @@
-fix import path on tests
-move /src/test to /test
+add cors
 create template render
 create auth
 move router, server and app to infraestructure/
+handle header (compare django-sample, protocolos, api and this app headers)
