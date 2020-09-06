@@ -1,11 +1,8 @@
 """ router.py test """
 import unittest
-from test.utils import fix_path
 
-fix_path()
-
-from router import Router  # noqa isort:skip
-from errors import NotFound, InternalServerError  # noqa isort:skip
+from errors import InternalServerError, NotFound
+from router import Router
 
 
 class RouterTest(unittest.TestCase):

@@ -1,15 +1,9 @@
 """ app.py test """
 import unittest
-from test.utils import fix_path  # TODO: Improve path
 
-import requests
-
+from app import App
+from router import Router
 from webtest import TestApp
-
-fix_path()
-
-from app import App  # noqa isort:skip
-from router import Router  # noqa isort:skip
 
 
 class AppTest(unittest.TestCase):
