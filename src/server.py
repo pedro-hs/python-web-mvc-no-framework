@@ -1,8 +1,7 @@
 """ App server """
 from wsgiref.simple_server import make_server
 
-from app import App
-from router import Router
+from app import get_app
 
 HOST = 'localhost'
 PORT = 8100
@@ -10,8 +9,7 @@ PORT = 8100
 
 def main():
     """ Prepare and execute server """
-    router = Router()
-    app = App(router)
+    app = get_app()
 
     with make_server(HOST, PORT, app) as server:
         server.serve_forever()
