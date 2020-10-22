@@ -1,5 +1,4 @@
 """ App router """
-from errors import InternalServerError, NotFound
 
 
 class Router:
@@ -20,25 +19,6 @@ class Router:
             self.routes.update(route)
 
         return wrapper
-
-    def get_controller(self, url, http_method):
-        """ Get controller by route(url + http_method)
-        :param url str: Route url. Example='https://localhost.com/score'
-        :param http_method str: Route http method. Example='GET'
-        :returns: request controller
-        :raises: NotFound or InternalServerError
-        """
-        try:
-            url = f"/{url.split('/')[-1]}"
-            controller = self.routes[(http_method, url)]
-
-        except KeyError:
-            raise NotFound
-
-        except Exception:
-            raise InternalServerError
-
-        return controller
 
     def merge(self, routers):
         """ Add routes of all routers in self.routes

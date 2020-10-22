@@ -6,16 +6,16 @@ from router import Router
 
 
 class RouterTest(unittest.TestCase):
-    def test_get_controller(self):
+    def test_get_service(self):
         # success
         router = Router()
         router.routes = {('GET', '/success'): 'test'}
-        controller = router.get_controller('http://localhost:8100/success', 'GET')
-        assert controller == 'test'
+        service = router.get_service('http://localhost:8100/success', 'GET')
+        assert service == 'test'
 
         # NotFound
         try:
-            Router().get_controller('http://localhost:8100/invalid', 'GET')
+            Router().get_service('http://localhost:8100/invalid', 'GET')
             assert False
         except NotFound:
             assert True
@@ -26,7 +26,7 @@ class RouterTest(unittest.TestCase):
         try:
             router = Router()
             router.routes = 'invalid'
-            router.get_controller('http://localhost:8100/invalid', 'GET')
+            router.get_service('http://localhost:8100/invalid', 'GET')
             assert False
         except InternalServerError:
             assert True

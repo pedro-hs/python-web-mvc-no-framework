@@ -1,6 +1,14 @@
-add cors
-create template render
-create auth
-handle header (compare django-sample, protocolos, api and this app headers)
-add multi path support. example: /customers/1/orders + test
-add query param support + test
+# request
+path parameter
+query parameter
+session
+cookie
+header
+body/file
+caching
+
+cors
+escape user input
+template render
+auth
+add middleware
