@@ -11,4 +11,4 @@ cors
 escape user input
 template render
 auth
-add middleware
+add error middleware

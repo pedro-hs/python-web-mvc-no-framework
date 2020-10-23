@@ -1,8 +1,8 @@
 """ app.py test """
 import unittest
 
-from app import App
-from router import Router
+from infrastructure.app import App
+from infrastructure.router import Router
 from webtest import TestApp
 
 

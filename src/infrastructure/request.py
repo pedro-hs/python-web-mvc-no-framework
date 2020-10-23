@@ -1,12 +1,12 @@
-
+""" Request handler """
 import http.client
 
-from errors import InternalServerError, NotFound
+from infrastructure.errors import InternalServerError, NotFound
 
 
 class Request:
 
-    def get_service(self, environ):
+    def get_service(self, environ, routes):
         """ Get service using request informations
         :param environ dict: wsgi environ
         :returns: request service 
@@ -17,7 +17,7 @@ class Request:
 
         try:
             url = self.handle_url(url)
-            service = self.routes[(http_method, url)]
+            service = routes[(http_method, url)]
 
         except KeyError:
             raise NotFound
@@ -47,7 +47,7 @@ class Request:
 
     def handle_status(self, response):
         """ Process http status
-        :param response dict: response body, status. Example={'body': '[]', 'status': '204'}
+        :param response dict: response body, status. Example={'body': '[]', 'status': '200'}
         :returns: status. Example='200 OK'
         """
         status = int(response.get('status', '200'))
@@ -56,28 +56,9 @@ class Request:
 
         return f'{status} {status_message}'
 
-    @handle_errors
     def process(self, environ, routes):
-
-        service = self.router.get_service(environ)
-        return self.run_service(service, environ)
-
-    def handle_errors(callback):  # pylint: disable=no-self-argument
-        """ Decorator. Handle request errors
-        :param callback function: callback
         """
-        def wrapper(*args):
-            start_response = args[2]
-
-            try:
-                return next(callback(*args))
-
-            except NotFound:
-                start_response('404 NOT FOUND', [('Content-type', 'text/html')])
-                return ['Not Found'.encode()]
-
-            except Exception:
-                start_response('500 INTERNAL SERVER ERROR', [('Content-type', 'text/html')])
-                return ['Internal Server Error'.encode()]
-
-        return wrapper
+        TODO
+        """
+        service = self.get_service(environ, routes)
+        return self.run_service(service, environ)

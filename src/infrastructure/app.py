@@ -1,6 +1,6 @@
 """ WSGI app """
-from request import Request
-from router import Router
+from infrastructure.request import Request
+from infrastructure.router import Router
 
 
 class App(object):
