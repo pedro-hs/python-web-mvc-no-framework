@@ -17,7 +17,8 @@ class App(object):
         :param start_response function: wsgi start_response
         :returns: yield response body or error
         """
-        body, status, header = Request().process(environ, self.router.routes)
+        body, status = Request().process(environ, self.router.routes)
+        header = [('Content-type', 'text/html')]
         start_response(status, header)
 
         if body:

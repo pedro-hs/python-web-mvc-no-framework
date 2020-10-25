@@ -40,10 +40,9 @@ class Request:
         """
         response = service()
         status = self.handle_status(response)
-        header = [('Content-type', 'text/html')]
-        response_body = response.get('body')
+        body = response.get('body')
 
-        return response_body, status, header
+        return body, status
 
     def handle_status(self, response):
         """ Process http status
